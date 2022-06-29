@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
     return const Scaffold(
       body: Center(
         child: Text(
-          'The site is updated soon.\nCreation of entire project will be live streamed or in form of recorded video on youtube channel\nHemish - The Coder Book',
+          'The site will be updated soon.\nCreation of entire project will be live streamed or in form of recorded video on youtube channel\nHemish - The Coder Book',
           style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
           textAlign: TextAlign.center,
         ),
