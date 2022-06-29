@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:landing/providers/providers.dart';
+import 'package:provider/provider.dart';
+import 'constants/constants.dart';
+import 'providers/providers.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeProvider>(create: (_) => ThemeProvider())
+      ],
+      child: const MyApp(),
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -20,12 +33,25 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text(
-          'The site will be updated soon.\nCreation of entire project will be live streamed or in form of recorded video on youtube channel\nHemish - The Coder Book',
-          style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
-          textAlign: TextAlign.center,
+        child: InkWell(
+          onTap: () {
+            Provider.of<ThemeProvider>(context, listen: false)
+                .changeTheme(FSThemes.green);
+          },
+          child: Consumer<ThemeProvider>(
+            builder: (context, themeProvider, child) => Text(
+              (MediaQuery.of(context).size.width < 400).toString(),
+              style: TextStyle(
+                fontFamily: 'Manrope',
+                fontSize: MediaQuery.of(context).size.width < 400 ? 32 : 46,
+                fontWeight: FontWeight.w700,
+                color: themeProvider.getTheme.colorShade4,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ),
         ),
       ),
     );
