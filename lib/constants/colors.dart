@@ -11,11 +11,11 @@ abstract class FSColors {
   static const purpleShade8 = Color(0xFF370c48);
 
   static const greenShade1 = Color(0xFFFFFFFF);
-  static const greenShade2 = Color(0xFFBAFEE1);
-  static const greenShade3 = Color(0xFF80FDD4);
-  static const greenShade4 = Color(0xFF46F5C4);
-  static const greenShade5 = Color(0xFF2FDBB1);
+  static const greenShade2 = Color(0xFFD5FEEC);
+  static const greenShade3 = Color(0xFFA8FEDF);
+  static const greenShade4 = Color(0xFF48FAC9);
+  static const greenShade5 = Color(0xFF00DCB0);
   static const greenShade6 = Color(0xFF18654F);
   static const greenShade7 = Color(0xFF0E4133);
   static const greenShade8 = Color(0xFF0A261E);
-} 
+}
