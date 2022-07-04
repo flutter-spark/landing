@@ -18,4 +18,6 @@ abstract class FSColors {
   static const greenShade6 = Color(0xFF18654F);
   static const greenShade7 = Color(0xFF0E4133);
   static const greenShade8 = Color(0xFF0A261E);
+
+  static const youtubeRed = Color(0xFFFF0A00);
 }

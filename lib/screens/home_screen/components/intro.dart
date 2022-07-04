@@ -96,7 +96,7 @@ class TagLine extends StatelessWidget {
               ),
               const TextSpan(text: " and "),
               TextSpan(
-                text: "difficult",
+                text: "confusing",
                 style: TextStyle(
                   fontFamily: 'Manrope',
                   fontSize: 48,

@@ -20,6 +20,7 @@ class HomePage extends StatelessWidget {
           children: const [
             Header(),
             Intro(),
+            OpenSource(),
           ],
         ),
       ),
