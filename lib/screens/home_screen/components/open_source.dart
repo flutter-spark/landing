@@ -12,149 +12,79 @@ class OpenSource extends StatelessWidget {
 
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) => Container(
-        color: themeProvider.getTheme.colorShade7,
+        color: themeProvider.getTheme.colorShade8,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              width: size.width * 0.45,
-              color: themeProvider.getTheme.colorShade8,
-              child: Column(
-                children: [
-                  const SizedBox(height: FSSpacings.extraLarge),
-                  SelectableText.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        fontFamily: 'Manrope',
-                        fontSize: 36,
-                        fontWeight: FontWeight.w600,
-                        color: themeProvider.getTheme.colorShade2,
-                      ),
-                      children: [
-                        const TextSpan(text: 'Each line of code is '),
-                        TextSpan(
-                          text: 'open source',
-                          style: TextStyle(
-                            fontFamily: 'Manrope',
-                            fontSize: 38,
-                            color: themeProvider.getTheme.colorShade4,
-                            decoration: TextDecoration.underline,
-                            decorationThickness: 3,
-                          ),
-                        ),
-                        const TextSpan(text: '\non GitHub!!!')
-                      ],
+              width: size.width * 0.55,
+              height: size.height * 0.4,
+              color: themeProvider.getTheme.colorShade7,
+              child: Center(
+                child: SelectableText.rich(
+                  TextSpan(
+                    style: TextStyle(
+                      fontFamily: 'Manrope',
+                      fontSize: 31,
+                      letterSpacing: 1.5,
+                      fontWeight: FontWeight.w600,
+                      color: themeProvider.getTheme.colorShade2,
                     ),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: FSSpacings.medium),
-                  Column(
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          GitHubTile(
-                            name: 'server',
-                            description: 'The backend code of FlutterSpark',
-                          ),
-                          GitHubTile(
-                            name: 'app',
-                            description: 'The frontend code of FlutterSpark',
-                          ),
-                        ],
+                      const TextSpan(text: 'Each line of code is\n'),
+                      TextSpan(
+                        text: 'open source',
+                        style: TextStyle(
+                          fontSize: 49,
+                          color: themeProvider.getTheme.colorShade4,
+                          decoration: TextDecoration.underline,
+                          decorationThickness: 3,
+                        ),
                       ),
-                      const SizedBox(height: FSSpacings.medium),
-                      const GitHubTile(
-                        name: 'landing',
-                        description: 'The webpage, you are looking now!!!',
-                        isHorizontalCard: true,
-                      ),
+                      const TextSpan(
+                        text: '\non GitHub!!!',
+                        style: TextStyle(
+                          fontSize: 48,
+                        ),
+                      )
                     ],
                   ),
-                  const SizedBox(height: FSSpacings.extraLarge),
-                ],
+                  textAlign: TextAlign.center,
+                ),
               ),
             ),
             SizedBox(
-              width: size.width * 0.55,
+              width: size.width * 0.45,
+              height: size.height * 0.4,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(FSSpacings.extraLarge),
-                    child: Text(
-                      'Entire project will be coded Live\non YouTube',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'Manrope',
-                        fontSize: 36,
-                        fontWeight: FontWeight.w600,
-                        color: themeProvider.getTheme.colorShade2,
+                  const SizedBox(height: FSSpacings.medium),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      GitHubTile(
+                        name: 'server',
+                        description: 'The backend code of FlutterSpark',
                       ),
+                      GitHubTile(
+                        name: 'app',
+                        description: 'The frontend code of FlutterSpark',
+                      ),
+                      SizedBox(width: 80),
+                    ],
+                  ),
+                  const SizedBox(height: FSSpacings.medium),
+                  const Padding(
+                    padding: EdgeInsets.only(right: 80),
+                    child: GitHubTile(
+                      name: 'landing',
+                      description: 'The webpage, you are looking now!!!',
+                      isHorizontalCard: true,
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 80),
-                    padding: const EdgeInsets.symmetric(
-                      vertical: FSSpacings.large,
-                      horizontal: 40,
-                    ),
-                    decoration: BoxDecoration(
-                      color: themeProvider.getTheme.colorShade2,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(96),
-                          child: Image.asset(
-                            'assets/images/yt_logo.png',
-                            height: 192,
-                          ),
-                        ),
-                        const SizedBox(width: FSSpacings.extraLarge),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Hemish - The Coder Book',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontFamily: 'Manrope',
-                                fontSize: 36,
-                                fontWeight: FontWeight.w600,
-                                color: themeProvider.getTheme.colorShade8,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 20,
-                                  width: 20,
-                                  decoration: BoxDecoration(
-                                    color: FSColors.youtubeRed,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                const SizedBox(width: FSSpacings.small),
-                                const Text(
-                                  'Live',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontFamily: 'Manrope',
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w400,
-                                    color: FSColors.youtubeRed,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
+                  const SizedBox(height: FSSpacings.medium),
                 ],
               ),
             ),
