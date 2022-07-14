@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
             Intro(),
             OpenSource(),
             Youtube(),
+            Footer(),
           ],
         ),
       ),
