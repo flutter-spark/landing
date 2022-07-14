@@ -1,3 +1,6 @@
+// ignore: avoid_web_libraries_in_flutter
+import 'dart:html' as html;
+
 import 'package:flutter/material.dart';
 import 'package:landing/constants/constants.dart';
 import 'package:landing/providers/providers.dart';
@@ -111,41 +114,44 @@ class GitHubTile extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) => Container(
-        width: isHorizontalCard
-            ? (size.width * 0.25 + FSSpacings.medium)
-            : size.width * 0.125,
-        // height: isHorizontalCard ? 150 : 250,
-        margin: const EdgeInsets.symmetric(horizontal: FSSpacings.small),
-        padding: const EdgeInsets.all(FSSpacings.medium),
-        decoration: BoxDecoration(
-          color: themeProvider.getTheme.colorShade7,
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              name,
-              style: TextStyle(
-                fontFamily: 'Manrope',
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: themeProvider.getTheme.colorShade2,
+    return InkWell(
+      onTap: () => html.window.open('https://github.com/flutter-spark/$name', "_blank"),
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) => Container(
+          width: isHorizontalCard
+              ? (size.width * 0.25 + FSSpacings.medium)
+              : size.width * 0.125,
+          // height: isHorizontalCard ? 150 : 250,
+          margin: const EdgeInsets.symmetric(horizontal: FSSpacings.small),
+          padding: const EdgeInsets.all(FSSpacings.medium),
+          decoration: BoxDecoration(
+            color: themeProvider.getTheme.colorShade7,
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                name,
+                style: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: themeProvider.getTheme.colorShade2,
+                ),
               ),
-            ),
-            const SizedBox(height: FSSpacings.medium),
-            Text(
-              description,
-              style: TextStyle(
-                fontFamily: 'Manrope',
-                fontSize: 22,
-                fontWeight: FontWeight.w600,
-                color: themeProvider.getTheme.colorShade3,
+              const SizedBox(height: FSSpacings.medium),
+              Text(
+                description,
+                style: TextStyle(
+                  fontFamily: 'Manrope',
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                  color: themeProvider.getTheme.colorShade3,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
