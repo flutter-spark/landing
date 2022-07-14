@@ -29,7 +29,10 @@ class _HeaderState extends State<Header> {
             Container(
               padding: const EdgeInsets.all(FSSpacings.small),
               decoration: BoxDecoration(
-                border: Border.all(color: themeProvider.getTheme.colorShade2),
+                border: Border.all(
+                  color: themeProvider.getTheme.colorShade2,
+                  width: 2,
+                ),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Row(
@@ -37,7 +40,7 @@ class _HeaderState extends State<Header> {
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: Image.asset('assets/icons/logo.png'),
+                    child: Image.asset('assets/images/logo.png'),
                   ),
                   const SizedBox(width: FSSpacings.medium),
                   Text(
@@ -56,7 +59,7 @@ class _HeaderState extends State<Header> {
               onTap: () {
                 if (currentTheme == FSThemes.purple) {
                   currentTheme = FSThemes.green;
-                  
+
                   Provider.of<ThemeProvider>(context, listen: false)
                       .changeTheme(currentTheme);
                 } else {

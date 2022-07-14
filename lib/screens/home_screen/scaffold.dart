@@ -12,10 +12,16 @@ class HomePage extends StatelessWidget {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) => Scaffold(
         backgroundColor: themeProvider.getTheme.colorShade2,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        body: child,
+      ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: const [
             Header(),
+            Intro(),
+            OpenSource(),
+            Youtube(),
           ],
         ),
       ),
