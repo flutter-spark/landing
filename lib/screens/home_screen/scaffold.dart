@@ -14,17 +14,22 @@ class HomePage extends StatelessWidget {
         backgroundColor: themeProvider.getTheme.colorShade2,
         body: child,
       ),
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Header(),
-            Intro(),
-            OpenSource(),
-            Youtube(),
-            Footer(),
-          ],
-        ),
+      child: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Header(),
+                Intro(),
+                OpenSource(),
+                Youtube(),
+                Footer(),
+              ],
+            ),
+          ),
+          const Waitlist(),
+        ],
       ),
     );
   }

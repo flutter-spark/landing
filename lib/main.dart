@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:landing/providers/providers.dart';
 import 'package:provider/provider.dart';
 import 'providers/providers.dart';
 import 'screens/screens.dart';
 
-void main() {
+Future<void> main() async {
+  await dotenv.load();
+
   runApp(
     MultiProvider(
       providers: [
