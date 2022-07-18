@@ -12,13 +12,14 @@ class Youtube extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isMobile = size.width < 500;
 
     return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) => Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
+      builder: (context, themeProvider, child) => Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
         children: [
           SizedBox(
-            width: size.width * 0.55,
+            width: size.width * (isMobile ? 1 : 0.55),
             child: Padding(
               padding: const EdgeInsets.all(FSSpacings.extraLarge),
               child: RichText(
@@ -26,17 +27,19 @@ class Youtube extends StatelessWidget {
                 text: TextSpan(
                   style: TextStyle(
                     fontFamily: 'Manrope',
-                    fontSize: 42,
+                    fontSize: isMobile ? 28 : 42,
                     fontWeight: FontWeight.w800,
                     color: themeProvider.getTheme.colorShade8,
                   ),
-                  children: const [
-                    TextSpan(text: 'Entire project will be coded Live\non '),
+                  children: [
                     TextSpan(
+                      text: isMobile
+                          ? 'Entire project will be\ncoded Live on '
+                          : 'Entire project will be coded Live\non ',
+                    ),
+                    const TextSpan(
                       text: 'YouTube',
-                      style: TextStyle(
-                        color: FSColors.youtubeRed,
-                      ),
+                      style: TextStyle(color: FSColors.youtubeRed),
                     ),
                   ],
                 ),
@@ -51,10 +54,12 @@ class Youtube extends StatelessWidget {
               );
             },
             child: SizedBox(
-              width: size.width * 0.45,
+              width: size.width * (isMobile ? 1 : 0.45),
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: FSSpacings.extraLarge,
+                padding: EdgeInsets.symmetric(
+                  vertical:
+                      isMobile ? FSSpacings.medium : FSSpacings.extraLarge,
+                  horizontal: isMobile ? 10 : 0,
                 ),
                 color: themeProvider.getTheme.colorShade3,
                 child: Row(
@@ -65,10 +70,13 @@ class Youtube extends StatelessWidget {
                       borderRadius: BorderRadius.circular(96),
                       child: Image.asset(
                         'assets/images/yt_logo.png',
-                        height: 192,
+                        width: isMobile ? 96 : 192,
                       ),
                     ),
-                    const SizedBox(width: FSSpacings.extraLarge),
+                    SizedBox(
+                      width:
+                          isMobile ? FSSpacings.medium : FSSpacings.extraLarge,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -77,11 +85,12 @@ class Youtube extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Manrope',
-                            fontSize: 36,
+                            fontSize: isMobile ? 20 : 36,
                             fontWeight: FontWeight.w600,
                             color: themeProvider.getTheme.colorShade8,
                           ),
                         ),
+                        const SizedBox(height: FSSpacings.small),
                         Row(
                           children: [
                             Container(
@@ -92,13 +101,13 @@ class Youtube extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            const SizedBox(width: FSSpacings.small),
-                            const Text(
+                            const SizedBox(width: FSSpacings.extraSmall),
+                            Text(
                               'Live',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontFamily: 'Manrope',
-                                fontSize: 26,
+                                fontSize: isMobile ? 16 : 26,
                                 fontWeight: FontWeight.w400,
                                 color: FSColors.youtubeRed,
                               ),

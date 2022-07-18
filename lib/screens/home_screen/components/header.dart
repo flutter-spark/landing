@@ -16,38 +16,44 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool isMobile = size.width < 500;
 
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) => Container(
         width: size.width,
-        height: 120,
+        height: isMobile ? 80 : 120,
         color: themeProvider.getTheme.colorShade8,
-        padding: const EdgeInsets.symmetric(horizontal: 80),
+        padding: EdgeInsets.symmetric(horizontal: isMobile ? 10 : 80),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              padding: const EdgeInsets.all(FSSpacings.small),
+              padding: EdgeInsets.all(
+                isMobile ? FSSpacings.extraSmall : FSSpacings.small,
+              ),
               decoration: BoxDecoration(
                 border: Border.all(
                   color: themeProvider.getTheme.colorShade2,
                   width: 2,
                 ),
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(isMobile ? 10 : 20),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.asset('assets/images/logo.png'),
+                    borderRadius: BorderRadius.circular(isMobile ? 5 : 10),
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: isMobile ? 24 : 56,
+                    ),
                   ),
                   const SizedBox(width: FSSpacings.medium),
                   Text(
                     'FlutterSpark',
                     style: TextStyle(
                       fontFamily: 'Manrope',
-                      fontSize: 28,
+                      fontSize: isMobile ? 20 : 28,
                       fontWeight: FontWeight.w700,
                       color: themeProvider.getTheme.colorShade2,
                     ),
@@ -70,9 +76,9 @@ class _HeaderState extends State<Header> {
                 }
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: FSSpacings.small,
-                  horizontal: FSSpacings.medium,
+                padding: EdgeInsets.symmetric(
+                  vertical: isMobile ? FSSpacings.extraSmall : FSSpacings.small,
+                  horizontal: isMobile ? FSSpacings.small : FSSpacings.medium,
                 ),
                 decoration: BoxDecoration(
                   color: themeProvider.getTheme.colorShade2,
@@ -82,7 +88,7 @@ class _HeaderState extends State<Header> {
                   'Change Theme',
                   style: TextStyle(
                     fontFamily: 'Manrope',
-                    fontSize: 22,
+                    fontSize: isMobile ? 16 : 22,
                     fontWeight: FontWeight.w700,
                     color: themeProvider.getTheme.colorShade8,
                   ),
