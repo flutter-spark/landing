@@ -1,24 +1,25 @@
 name: landing
 description: A new Flutter project.
 
-publish_to: 'none' 
+publish_to: "none"
 version: 1.0.0+1
 environment:
   sdk: ">=2.16.2 <3.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter  
   cupertino_icons: ^1.0.2
-  provider: ^6.0.3
+  flutter:
+    sdk: flutter
   flutter_dotenv: ^5.0.2
+  http: ^0.13.4
+  provider: ^6.0.3
 
 dev_dependencies:
+  flutter_lints: ^1.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^1.0.0
 
-flutter:  
+flutter:
   uses-material-design: true
   assets:
     - assets/images/
@@ -33,4 +34,3 @@ flutter:
           weight: 600
         - asset: assets/fonts/manrope/Manrope-Bold.ttf
           weight: 700
-  

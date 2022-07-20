@@ -4,7 +4,9 @@ import 'package:landing/providers/providers.dart';
 import 'package:provider/provider.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({Key? key}) : super(key: key);
+  const Footer({Key? key, required this.onWaitlistClick}) : super(key: key);
+
+  final GestureTapCallback onWaitlistClick;
 
   @override
   Widget build(BuildContext context) {
@@ -72,22 +74,26 @@ class Footer extends StatelessWidget {
                   bottom: Radius.circular(20),
                 ),
               ),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: FSSpacings.small,
-                  horizontal: FSSpacings.large,
-                ),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: themeProvider.getTheme.colorShade6,
-                ),
-                child: Text(
-                  'Join Waitlist',
-                  style: TextStyle(
-                    fontFamily: 'Manrope',
-                    fontSize: isMobile ? 22 : 28,
-                    fontWeight: FontWeight.w700,
-                    color: themeProvider.getTheme.colorShade2,
+              child: InkWell(
+                onTap: onWaitlistClick,
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: FSSpacings.small,
+                    horizontal: FSSpacings.large,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: themeProvider.getTheme.colorShade6,
+                  ),
+                  child: Text(
+                    'Join Waitlist',
+                    style: TextStyle(
+                      fontFamily: 'Manrope',
+                      fontSize: isMobile ? 22 : 28,
+                      fontWeight: FontWeight.w700,
+                      color: themeProvider.getTheme.colorShade2,
+                    ),
                   ),
                 ),
               ),

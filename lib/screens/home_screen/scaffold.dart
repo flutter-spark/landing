@@ -4,8 +4,15 @@ import 'package:provider/provider.dart';
 
 import 'components/components.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  bool isWaitlistVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +26,29 @@ class HomePage extends StatelessWidget {
           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Header(),
-                Intro(),
-                OpenSource(),
-                Youtube(),
-                Footer(),
+              children: [
+                const Header(),
+                Intro(
+                  onWaitlistClick: () => setState(
+                    () => isWaitlistVisible = true,
+                  ),
+                ),
+                const OpenSource(),
+                const Youtube(),
+                Footer(
+                  onWaitlistClick: () => setState(
+                    () => isWaitlistVisible = true,
+                  ),
+                ),
               ],
             ),
           ),
-          const Waitlist(),
+          Visibility(
+            visible: isWaitlistVisible,
+            child: Waitlist(
+              onClose: () => setState(() => isWaitlistVisible = false),
+            ),
+          ),
         ],
       ),
     );
