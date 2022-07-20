@@ -17,9 +17,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ThemeProvider>(
-      builder: (context, themeProvider, child) => Scaffold(
-        backgroundColor: themeProvider.getTheme.colorShade2,
-        body: child,
+      builder: (context, themeProvider, child) => Title(
+        title: 'FlutterSpark',
+        color: themeProvider.getTheme.colorShade5,
+        child: Scaffold(
+          backgroundColor: themeProvider.getTheme.colorShade2,
+          body: child,
+        ),
       ),
       child: Stack(
         children: [
