@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     return Consumer<ThemeProvider>(
       builder: (context, themeProvider, child) => Title(
         title: 'FlutterSpark',
-        color: themeProvider.getTheme.colorShade5,
+        color: themeProvider.getTheme.colorShade8,
         child: Scaffold(
           backgroundColor: themeProvider.getTheme.colorShade2,
           body: child,
