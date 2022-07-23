@@ -81,11 +81,21 @@ class Youtube extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Hemish - The Coder Book',
-                          textAlign: TextAlign.center,
+                          'Hemish',
+                          textAlign: TextAlign.start,
                           style: TextStyle(
                             fontFamily: 'Manrope',
-                            fontSize: isMobile ? 20 : 36,
+                            fontSize: isMobile ? 22 : 36,
+                            fontWeight: FontWeight.w600,
+                            color: themeProvider.getTheme.colorShade8,
+                          ),
+                        ),
+                        Text(
+                          'The Coder Book',
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontFamily: 'Manrope',
+                            fontSize: isMobile ? 18 : 32,
                             fontWeight: FontWeight.w600,
                             color: themeProvider.getTheme.colorShade8,
                           ),

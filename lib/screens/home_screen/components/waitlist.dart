@@ -3,9 +3,8 @@
 import 'dart:convert';
 import 'dart:js' as js;
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:http/http.dart';
 import 'package:landing/constants/constants.dart';
 import 'package:landing/providers/providers.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +19,8 @@ class Waitlist extends StatefulWidget {
 }
 
 class _WaitlistState extends State<Waitlist> {
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  String name = '';
   String email = '';
 
   @override
@@ -34,7 +35,7 @@ class _WaitlistState extends State<Waitlist> {
         alignment: Alignment.center,
         color: Colors.black.withOpacity(0.6),
         child: Container(
-          height: size.height * (isMobile ? 0.3 : 0.25),
+          height: size.height * (isMobile ? 0.5 : 0.4),
           width: size.width * (isMobile ? 0.8 : 0.2),
           padding: const EdgeInsets.all(FSSpacings.medium),
           decoration: BoxDecoration(
@@ -84,6 +85,37 @@ class _WaitlistState extends State<Waitlist> {
                 ),
                 child: TextField(
                   onChanged: (value) {
+                    name = value;
+                  },
+                  autocorrect: false,
+                  autofillHints: const [AutofillHints.email],
+                  keyboardType: TextInputType.emailAddress,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: themeProvider.getTheme.colorShade8,
+                  ),
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Full name',
+                  ),
+                ),
+              ),
+              const SizedBox(height: FSSpacings.medium),
+              Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: FSSpacings.extraSmall,
+                  horizontal: FSSpacings.medium,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    width: 2,
+                    color: themeProvider.getTheme.colorShade5,
+                  ),
+                ),
+                child: TextField(
+                  onChanged: (value) {
                     email = value;
                   },
                   autocorrect: false,
@@ -96,39 +128,38 @@ class _WaitlistState extends State<Waitlist> {
                   ),
                   decoration: const InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'e-mail',
+                    hintText: 'e-mail address',
                   ),
                 ),
               ),
               const Spacer(),
               InkWell(
                 onTap: () async {
-                  Response response = await post(
-                    Uri.parse('https://api.sendinblue.com/v3/contacts'),
-                    headers: <String, String>{
-                      'Accept': 'application/json',
-                      'Content-Type': 'application/json',
-                      'api-key': dotenv.env['SEND_IN_BLUE_API_KEY']!,
-                    },
-                    body: jsonEncode(
-                      <String, dynamic>{
-                        'email': email,
-                      },
-                    ),
-                  );
+                  if (name.length >= 256 || email.length >= 256) {
+                    DatabaseReference ref =
+                        FirebaseDatabase.instance.ref("waitlist");
 
-                  if (response.statusCode == 201) {
+                    await ref.push().set({
+                      'name': name,
+                      'email': email,
+                    });
+
                     js.context.callMethod(
                       "showAlert",
                       ["Congratulations you are in Waitlist!!!"],
                     );
-                  }
-                  if (response.statusCode == 400) {
+                  } else {
                     js.context.callMethod(
                       "showAlert",
-                      ["Emm, you are already in the waitlist."],
+                      [
+                        "Emm, your email address or name is above 255 characters, please make sure it is below limit."
+                      ],
                     );
                   }
+                  // if (response.statusCode == 201) {
+                  // }
+                  // if (response.statusCode == 400) {
+                  // }
 
                   widget.onClose();
                 },

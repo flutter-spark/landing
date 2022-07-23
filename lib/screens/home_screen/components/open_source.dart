@@ -57,7 +57,7 @@ class OpenSource extends StatelessWidget {
             ),
             SizedBox(
               width: size.width * (isMobile ? 1 : 0.45),
-              height: size.height * (isMobile ? 0.75 : 0.5),
+              height: size.height * (isMobile ? 0.9 : 0.5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.end,
