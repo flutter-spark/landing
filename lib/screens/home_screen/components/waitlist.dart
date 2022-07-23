@@ -135,7 +135,7 @@ class _WaitlistState extends State<Waitlist> {
               const Spacer(),
               InkWell(
                 onTap: () async {
-                  if (name.length >= 256 || email.length >= 256) {
+                  if (name.length <= 256 || email.length <= 256) {
                     DatabaseReference ref =
                         FirebaseDatabase.instance.ref("waitlist");
 
